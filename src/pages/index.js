@@ -1,6 +1,6 @@
-import { Box, Grid, GridItem, Heading, Link, Text } from "@chakra-ui/react";
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import { Grid } from "@chakra-ui/react";
+import Card from "../components/Card";
+import Layout from "../components/Layout";
 
 export default function Home() {
   const data = [
@@ -27,47 +27,17 @@ export default function Home() {
   ];
 
   return (
-    <Box className={styles.container}>
-      <Head>
-        <title>Your Next Chakra ⚡️</title>
-        <meta
-          name="description"
-          content="A custom boilerplate to get the fastest project setup for Next.js with Chakra
-          UI. Created by Ilhambara."
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <Box as="main" className={styles.main}>
-        <Heading as="h1" fontSize="5xl">
-          Your Next Chakra ⚡️
-        </Heading>
-        <Text fontSize="xl" py={10}>
-          A custom boilerplate to get the fastest project setup for Next.js with
-          Chakra UI.
-        </Text>
-
-        <Grid templateColumns="repeat(2, 1fr)" gap={4}>
-          {data.map((item) => (
-            <GridItem
-              as={Link}
-              href={item.url}
-              key={item.name}
-              className={styles.card}
-              isExternal
-            >
-              <Heading as="h2">{item.name} &rarr;</Heading>
-              <Text opacity={0.75}>{item.desc}</Text>
-            </GridItem>
-          ))}
-        </Grid>
-      </Box>
-
-      <Box as="footer" className={styles.footer}>
-        <Link href="https://github.com/ilhambara/your-next-chakra" isExternal>
-          Created in full-power 🚀 by Ilhambara
-        </Link>
-      </Box>
-    </Box>
+    <Layout>
+      <Grid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]} gap={6}>
+        {data.map((item) => (
+          <Card
+            key={item.name}
+            href={item.url}
+            title={item.name}
+            desc={item.desc}
+          />
+        ))}
+      </Grid>
+    </Layout>
   );
 }
